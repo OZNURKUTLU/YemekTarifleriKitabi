@@ -15,3 +15,7 @@ Veri saklama için **Room Database** kullanılmıştır.
 - Kotlin
 - Android Studio
 - SQLite Room Database
+
+
+## 📷 Ekran Görüntüleri
+![YemTar](https://github.com/user-attachments/assets/22db77d1-7561-48c5-b44c-61b811587149)
