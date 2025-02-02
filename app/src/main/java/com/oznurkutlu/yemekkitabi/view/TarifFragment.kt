@@ -109,7 +109,7 @@ class TarifFragment : Fragment() {
 
     }
 
-    fun kaydet(view: View) {
+  /**  fun kaydet(view: View) {
         val isim = binding.isimText.text.toString()
         val malzeme = binding.malzemeText.text.toString()
         if (secilenBitmap != null) {
@@ -124,6 +124,47 @@ class TarifFragment : Fragment() {
             mDisposable.add(tarifDao.insert(tarif).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleResponseForInsert))
+        }
+    } **/
+
+ fun kaydet(view: View) {
+        val isim = binding.isimText.text.toString()
+        val malzeme = binding.malzemeText.text.toString()
+
+        if (isim.isNotEmpty() && malzeme.isNotEmpty()) {
+            val kucukBitmap = secilenBitmap?.let { kucukBitmapOlustur(it, 300) }
+            val outputStream = ByteArrayOutputStream()
+            kucukBitmap?.compress(Bitmap.CompressFormat.PNG, 50, outputStream)
+            val byteDizisi = outputStream.toByteArray()
+
+            if (secilenTarif != null) {
+                // Güncelleme işlemi
+                val guncellenenTarif = Tarif(
+                    id = secilenTarif!!.id,
+                    isim = isim,
+                    malzeme = malzeme,
+                    gorsel = byteDizisi
+                )
+
+                mDisposable.add(tarifDao.update(guncellenenTarif)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(this::handleResponseForInsert))
+            } else {
+                // Yeni tarif ekleme
+                val yeniTarif = Tarif(
+                    isim = isim,
+                    malzeme = malzeme,
+                    gorsel = byteDizisi
+                )
+
+                mDisposable.add(tarifDao.insert(yeniTarif)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(this::handleResponseForInsert))
+            }
+        } else {
+            Toast.makeText(requireContext(), "Lütfen tüm alanları doldurun.", Toast.LENGTH_SHORT).show()
         }
     }
 
