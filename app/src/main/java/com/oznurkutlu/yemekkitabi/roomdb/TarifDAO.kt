@@ -19,6 +19,9 @@ interface TarifDAO {
     @Insert
     fun insert(tarif: Tarif) : Completable
 
+    @Update
+    fun update(tarif: Tarif): Completable
+
     @Delete
     fun delete(tarif: Tarif)  : Completable
 
