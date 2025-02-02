@@ -9,13 +9,12 @@ data class Tarif (
     @ColumnInfo(name="isim")
     var isim:String,
 
-    @ColumnInfo(name="gorsel")
-    var malzeme:String,
+    @ColumnInfo(name = "malzeme")
+    var malzeme: String,
 
-    @ColumnInfo(name="malzeme")
-    var gorsel: ByteArray
+    @ColumnInfo(name = "gorsel")
+    var gorsel: ByteArray,
 
-){
-    @PrimaryKey(autoGenerate=true)
-    var id=0
-}
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+)
