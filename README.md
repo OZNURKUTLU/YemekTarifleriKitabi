@@ -18,4 +18,4 @@ Veri saklama için **Room Database** kullanılmıştır.
 
 
 ## 📷 Ekran Görüntüleri
-![YemTar](https://github.com/user-attachments/assets/22db77d1-7561-48c5-b44c-61b811587149)
+![YemTar](https://github.com/user-attachments/assets/f6a13229-5b8b-4797-ab0e-5a265742ac3b)
